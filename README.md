@@ -1,75 +1,74 @@
-# React + TypeScript + Vite
+# Qrati Connect — React Example
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This example demonstrates how to integrate [Qrati Connect](https://qrati.com) into a **React** application using the Web Component (`<qrati-connect>`).
 
-Currently, two official plugins are available:
+Qrati Connect is a fully embeddable, customizable event discovery widget that brings your community events, photo galleries, and leaderboards directly into your website — no backend required.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Quick Start
 
-## React Compiler
-
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
-
-Note: This will impact Vite dev & build performances.
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+pnpm install
+pnpm dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Open [http://localhost:5173](http://localhost:5173) in your browser.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## How It Works
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+1. A `<script>` tag loads the Qrati Connect Web Component from the CDN
+2. The `<qrati-connect>` custom element renders the widget inside your React app
+3. All configuration is passed via HTML attributes
+
+**Key file:** `src/config.ts` — update `EXAMPLE_ORG_ID` with your real organization ID from [qrati.com](https://qrati.com).
+
+```tsx
+// src/config.ts
+export const EXAMPLE_ORG_ID = 'YOUR_ORGANIZATION_ID';
 ```
+
+```tsx
+// src/App.tsx
+import { EXAMPLE_ORG_ID } from './config'
+
+<qrati-connect
+  organization-id={EXAMPLE_ORG_ID}
+  theme="light"
+  router="hash"
+/>
+```
+
+## Available Attributes
+
+| Attribute         | Type                  | Default    | Description                        |
+| ----------------- | --------------------- | ---------- | ---------------------------------- |
+| `organization-id` | `string`              | —          | Your organization ID (**required**)|
+| `theme`           | `"light"` \| `"dark"` | `"light"`  | Color theme                        |
+| `router`          | `"memory"` \| `"hash"`| `"memory"` | Routing strategy                   |
+| `uid`             | `string`              | —          | User ID (for custom auth)          |
+| `fname`           | `string`              | —          | First name (for custom auth)       |
+| `lname`           | `string`              | —          | Last name (for custom auth)        |
+
+## Tech Stack
+
+- [React](https://react.dev) 19
+- [Vite](https://vite.dev) 8
+- [TypeScript](https://typescriptlang.org) 5.9
+- [Qrati Connect](https://qrati.com) Web Component
+
+## Learn More
+
+- [Qrati Connect Documentation](https://qrati.com/docs)
+- [React Documentation](https://react.dev)
+- [Vite Documentation](https://vite.dev)
+
+---
+
+### Open it in
+
+[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/qrati-labs/qrati-connect-react-example)
+[![Open in CodeSandbox](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/qrati-labs/qrati-connect-react-example)
+[![Open in VS Code](https://img.shields.io/badge/Open_in-VS_Code-blue?logo=visualstudiocode)](https://vscode.dev/github/qrati-labs/qrati-connect-react-example)
+
+---
+
+Built with [Qrati Connect](https://qrati.com) — the embeddable event discovery widget for modern web apps.

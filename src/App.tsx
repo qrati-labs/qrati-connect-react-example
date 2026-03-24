@@ -1,35 +1,50 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useEffect, useRef } from 'react';
+
+import './App.css';
+import { EXAMPLE_ORG_ID, QRATI_SCRIPT_URL } from './config';
 
 function App() {
-  const [count, setCount] = useState(0)
+    const containerRef = useRef<HTMLDivElement>(null);
 
-  return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    useEffect(() => {
+        const script = document.createElement('script');
+        script.type = 'module';
+        script.src = QRATI_SCRIPT_URL;
+        document.head.appendChild(script);
+        return () => {
+            document.head.removeChild(script);
+        };
+    }, []);
+
+    return (
+        <div className='app'>
+            <header className='hero'>
+                <h1>Qrati Connect — React Example</h1>
+                <p>
+                    A fully embeddable event discovery widget powered by{' '}
+                    <a href='https://qrati.com' target='_blank' rel='noopener noreferrer'>
+                        Qrati
+                    </a>
+                    . Drop it into any React application with a single component.
+                </p>
+            </header>
+            <main className='content' ref={containerRef}>
+                <qrati-connect organization-id={EXAMPLE_ORG_ID} theme='light' router='hash' />
+            </main>
+            <footer className='footer'>
+                <p>
+                    Built with{' '}
+                    <a href='https://react.dev' target='_blank' rel='noopener noreferrer'>
+                        React
+                    </a>{' '}
+                    &amp;{' '}
+                    <a href='https://qrati.com' target='_blank' rel='noopener noreferrer'>
+                        Qrati Connect
+                    </a>
+                </p>
+            </footer>
+        </div>
+    );
 }
 
-export default App
+export default App;
