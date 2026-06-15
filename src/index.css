@@ -3,14 +3,62 @@
     line-height: 1.5;
     font-weight: 400;
 
-    color-scheme: light dark;
-    color: rgba(255, 255, 255, 0.87);
-    background-color: #242424;
-
     font-synthesis: none;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+}
+
+[data-theme='light'] {
+    color-scheme: light;
+    --page-bg: #ffffff;
+    --page-text: #213547;
+    --page-heading: #1a1a2e;
+    --page-muted: #4a5568;
+    --brand-accent: #e14f00;
+    --pill-border: rgba(0, 0, 0, 0.12);
+    --pill-bg: rgba(255, 255, 255, 0.85);
+    --pill-text: #374151;
+    --pill-border-hover: rgba(225, 79, 0, 0.4);
+    --pill-bg-hover: rgba(255, 93, 1, 0.06);
+    --pill-text-hover: #e14f00;
+    --widget-shell-bg: rgba(255, 255, 255, 0.6);
+    --footer-heading: #1a1a2e;
+    --footer-muted: #6b7280;
+    --footer-link-hover: #e14f00;
+    --theme-toggle-bg: rgba(0, 0, 0, 0.06);
+    --theme-toggle-border: rgba(0, 0, 0, 0.12);
+    --theme-toggle-color: #374151;
+    --theme-toggle-hover-bg: rgba(0, 0, 0, 0.1);
+
+    color: #213547;
+    background-color: #ffffff;
+}
+
+[data-theme='dark'] {
+    color-scheme: dark;
+    --page-bg: #0f0f14;
+    --page-text: rgba(255, 255, 255, 0.87);
+    --page-heading: #f0f0f5;
+    --page-muted: rgba(255, 255, 255, 0.6);
+    --brand-accent: #ff6b35;
+    --pill-border: rgba(255, 255, 255, 0.12);
+    --pill-bg: rgba(255, 255, 255, 0.06);
+    --pill-text: rgba(255, 255, 255, 0.8);
+    --pill-border-hover: rgba(255, 93, 1, 0.5);
+    --pill-bg-hover: rgba(255, 93, 1, 0.12);
+    --pill-text-hover: #ff6b35;
+    --widget-shell-bg: rgba(255, 255, 255, 0.04);
+    --footer-heading: #f0f0f5;
+    --footer-muted: rgba(255, 255, 255, 0.5);
+    --footer-link-hover: #ff6b35;
+    --theme-toggle-bg: rgba(255, 255, 255, 0.08);
+    --theme-toggle-border: rgba(255, 255, 255, 0.12);
+    --theme-toggle-color: rgba(255, 255, 255, 0.8);
+    --theme-toggle-hover-bg: rgba(255, 255, 255, 0.14);
+
+    color: rgba(255, 255, 255, 0.87);
+    background-color: #0f0f14;
 }
 
 a {
@@ -54,15 +102,3 @@ button:focus-visible {
     outline: 4px auto -webkit-focus-ring-color;
 }
 
-@media (prefers-color-scheme: light) {
-    :root {
-        color: #213547;
-        background-color: #ffffff;
-    }
-    a:hover {
-        color: #747bff;
-    }
-    button {
-        background-color: #f9f9f9;
-    }
-}
