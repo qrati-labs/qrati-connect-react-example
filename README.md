@@ -1,74 +1,43 @@
 # Qrati Connect — React Example
 
-This example demonstrates how to integrate [Qrati Connect](https://qrati.com) into a **React** application using the Web Component (`<qrati-connect>`).
+Embeds [Qrati Connect](https://qrati.com) into a React + Vite app using the
+**React component** integration, with a host-controlled
+light/dark theme and a demo login for organizations that use custom auth.
 
-Qrati Connect is a fully embeddable, customizable event discovery widget that brings your community events, photo galleries, and leaderboards directly into your website — no backend required.
+## Integration method: React component
 
-## Quick Start
+The SDK ships a React component. Import it and render:
+
+```tsx
+import QratiConnect from '@qratilabs/qrati-connect';
+
+<QratiConnect organizationId={ORGANIZATION_ID} uid={user.userId} theme={theme} router="hash" />
+```
+
+## Run it
 
 ```bash
-pnpm install
-pnpm dev
+bun install
+cp .env.example .env   # optional — sensible defaults are baked in
+bun dev
 ```
 
-Open [http://localhost:5173](http://localhost:5173) in your browser.
+## Configuration
 
-## How It Works
+| Variable               | Description                                                       |
+| ---------------------- | ----------------------------------------------------------------- |
+| `VITE_ORGANIZATION_ID` | Your Qrati organization ID                                        |
+| `VITE_API_ENDPOINT`    | Demo-login endpoint for custom-auth orgs. Leave empty to skip it. |
 
-1. A `<script>` tag loads the Qrati Connect Web Component from the CDN
-2. The `<qrati-connect>` custom element renders the widget inside your React app
-3. All configuration is passed via HTML attributes
+## Demo auth
 
-**Key file:** `src/config.ts` — update `EXAMPLE_ORG_ID` with your real organization ID from [qrati.com](https://qrati.com).
+Orgs with custom auth expect a known user. The login form (`src/auth.ts`) derives
+a stable `uid` from the email, optionally POSTs to `VITE_API_ENDPOINT`, then
+renders the widget with `uid` / `fname` / `lname` so the user is recognized.
 
-```tsx
-// src/config.ts
-export const EXAMPLE_ORG_ID = 'YOUR_ORGANIZATION_ID';
-```
+## Other integration methods
 
-```tsx
-// src/App.tsx
-import { EXAMPLE_ORG_ID } from './config'
+- **Web component** — `<qrati-connect>` from the CDN (see the Svelte / Solid / Qwik / Lit examples).
+- **Embed (no-code)** — single `<script>` tag with `data-*` attributes (see the Vanilla JS / Marko / Ember examples).
 
-<qrati-connect
-  organization-id={EXAMPLE_ORG_ID}
-  theme="light"
-  router="hash"
-/>
-```
-
-## Available Attributes
-
-| Attribute         | Type                  | Default    | Description                        |
-| ----------------- | --------------------- | ---------- | ---------------------------------- |
-| `organization-id` | `string`              | —          | Your organization ID (**required**)|
-| `theme`           | `"light"` \| `"dark"` | `"light"`  | Color theme                        |
-| `router`          | `"memory"` \| `"hash"`| `"memory"` | Routing strategy                   |
-| `uid`             | `string`              | —          | User ID (for custom auth)          |
-| `fname`           | `string`              | —          | First name (for custom auth)       |
-| `lname`           | `string`              | —          | Last name (for custom auth)        |
-
-## Tech Stack
-
-- [React](https://react.dev) 19
-- [Vite](https://vite.dev) 8
-- [TypeScript](https://typescriptlang.org) 5.9
-- [Qrati Connect](https://qrati.com) Web Component
-
-## Learn More
-
-- [Qrati Connect Documentation](https://qrati.com/docs)
-- [React Documentation](https://react.dev)
-- [Vite Documentation](https://vite.dev)
-
----
-
-### Open it in
-
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/qrati-labs/qrati-connect-react-example)
-[![Open in CodeSandbox](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/qrati-labs/qrati-connect-react-example)
-[![Open in VS Code](https://img.shields.io/badge/Open_in-VS_Code-blue?logo=visualstudiocode)](https://vscode.dev/github/qrati-labs/qrati-connect-react-example)
-
----
-
-Built with [Qrati Connect](https://qrati.com) — the embeddable event discovery widget for modern web apps.
+Docs: <https://www.npmjs.com/package/@qratilabs/qrati-connect>

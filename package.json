@@ -9,6 +9,7 @@
     "lint": "eslint ."
   },
   "dependencies": {
+    "@qratilabs/qrati-connect": "^2.23.7",
     "react": "19.2.4",
     "react-dom": "19.2.4"
   },
@@ -29,9 +30,7 @@
     "vite": "8.0.0-beta.16",
     "wrangler": "^4.77.0"
   },
-  "pnpm": {
-    "overrides": {
-      "vite": "8.0.0-beta.13"
-    }
+  "overrides": {
+    "vite": "8.0.0-beta.16"
   }
 }
