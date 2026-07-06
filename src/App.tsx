@@ -1,19 +1,22 @@
-import { useEffect, useState } from 'react';
-import QratiConnect from '@qratilabs/qrati-connect';
-
+import { useState } from 'react';
 import './index.css';
+import QratiConnect from '@qratilabs/qrati-connect';
 import { EXAMPLE_ORG_ID, GITHUB_ORG, REPO } from './config';
 
+const repoUrl = `https://github.com/${GITHUB_ORG}/${REPO}`;
+const vscodeUrl = `https://vscode.dev/github/${GITHUB_ORG}/${REPO}`;
+const year = new Date().getFullYear();
+
+function initTheme(): 'light' | 'dark' {
+  const t =
+    (localStorage.getItem('qc-theme') as 'light' | 'dark') ||
+    (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+  document.documentElement.setAttribute('data-theme', t);
+  return t;
+}
+
 function App() {
-    const [theme, setTheme] = useState<'light' | 'dark'>('light');
-
-    const repoUrl = `https://github.com/${GITHUB_ORG}/${REPO}`;
-    const vscodeUrl = `https://vscode.dev/github/${GITHUB_ORG}/${REPO}`;
-    const currentYear = new Date().getFullYear();
-
-    useEffect(() => {
-        document.documentElement.setAttribute('data-theme', theme);
-    }, [theme]);
+  const [theme, setTheme] = useState<'light' | 'dark'>(initTheme);
 
     return (
         <div className="app">
@@ -26,7 +29,7 @@ function App() {
     </button>
     <div className="page-shell">
         <div className="page-frame">
-            <header className="hero">
+          <header className="hero">
             <p className="hero-kicker">Qrati Connect Demo</p>
             <h1>
                 <a href="https://qrati.com" target="_blank" rel="noopener noreferrer">Qrati</a>
@@ -57,9 +60,9 @@ function App() {
                     />
                 </svg>
                 <span>Open in VS Code</span>
-                </a>
+              </a>
             </div>
-            </header>
+          </header>
 
             <main className="content-shell">
             <section className="widget-frame">
@@ -67,33 +70,24 @@ function App() {
             </section>
             </main>
 
-            <footer className="footer">
+          <footer className="footer">
             <div className="footer-brand">
-                <img
-                src="https://assets.qrati.com/images/qrati-connect-logo-square.png"
-                alt="Qrati Connect logo"
-                />
-                <div>
+              <img src="https://assets.qrati.com/images/qrati-connect-logo-square.png" alt="Qrati Connect logo" referrerPolicy="no-referrer" />
+              <div>
                 <span className="footer-title"><span>Qrati</span> Connect</span>
                 <p>Elevate your event experience.</p>
-                </div>
+              </div>
             </div>
-
             <div className="footer-meta">
-                <nav aria-label="Footer navigation">
+              <nav aria-label="Footer navigation">
                 <a href="https://qrati.com" target="_blank" rel="noopener noreferrer">qrati.com</a>
-                <a
-                    href="https://www.npmjs.com/package/@qratilabs/qrati-connect"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    >npm</a>
-                <a href="https://github.com/qrati-labs" target="_blank" rel="noopener noreferrer"
-                    >GitHub</a>
+                <a href="https://www.npmjs.com/package/@qratilabs/qrati-connect" target="_blank" rel="noopener noreferrer">npm</a>
+                <a href={`https://github.com/${GITHUB_ORG}`} target="_blank" rel="noopener noreferrer">GitHub</a>
                 <a href="https://qrati.com/pricing" target="_blank" rel="noopener noreferrer">Pricing</a>
-                </nav>
-                <p className="footer-note">© {currentYear} Qrati Labs. All rights reserved.</p>
+              </nav>
+              <p className="footer-note">© {year} Qrati Labs. All rights reserved.</p>
             </div>
-            </footer>
+          </footer>
         </div>
     </div>
     </div>
