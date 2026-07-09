@@ -11,7 +11,7 @@ The SDK ships a React component. Import it and render:
 ```tsx
 import QratiConnect from '@qratilabs/qrati-connect';
 
-<QratiConnect organizationId={ORGANIZATION_ID} uid={user.userId} theme={theme} router="hash" />
+<QratiConnect organizationId={ORGANIZATION_ID} theme={theme} router="hash" />
 ```
 
 ## Run it
@@ -24,16 +24,9 @@ pnpm dev
 
 ## Configuration
 
-| Variable               | Description                                                       |
-| ---------------------- | ----------------------------------------------------------------- |
-| `VITE_ORGANIZATION_ID` | Your Qrati organization ID                                        |
-| `VITE_API_ENDPOINT`    | Demo-login endpoint for custom-auth orgs. Leave empty to skip it. |
-
-## Demo auth
-
-Orgs with custom auth expect a known user. The login form (`src/auth.ts`) derives
-a stable `uid` from the email, optionally POSTs to `VITE_API_ENDPOINT`, then
-renders the widget with `uid` / `fname` / `lname` so the user is recognized.
+| Variable               | Description                 |
+| ---------------------- | -----------------------------|
+| `VITE_ORGANIZATION_ID` | Your Qrati organization ID  |
 
 ## Other integration methods
 
