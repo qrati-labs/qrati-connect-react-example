@@ -9,7 +9,7 @@ importers:
   .:
     dependencies:
       '@qratilabs/qrati-connect':
-        specifier: ^2.23.8
+        specifier: 2.27.0
         version: 2.27.0(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
       react:
         specifier: 19.2.4
