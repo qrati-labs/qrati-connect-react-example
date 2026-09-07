@@ -17,10 +17,7 @@ const GEO_STORAGE_KEY = 'qrati_geo_consent_required';
 export function initGtm(gtmId?: string): void {
   if (typeof window === 'undefined') return;
 
-  const id =
-    gtmId ||
-    (import.meta.env.VITE_GTM_ID as string | undefined) ||
-    (import.meta.env.NEXT_PUBLIC_GTM_ID as string | undefined);
+  const id = gtmId || (import.meta.env.VITE_GTM_ID as string | undefined);
 
   if (!id || id === '__GTM_ID__') return;
   if (

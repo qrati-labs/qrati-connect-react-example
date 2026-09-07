@@ -4,19 +4,11 @@ import { cloudflare } from '@cloudflare/vite-plugin';
 
 // https://vite.dev/config/
 export default defineConfig(({ command, mode }) => {
-  const env = loadEnv(mode, process.cwd(), ['VITE_', 'NEXT_PUBLIC_', 'GTM_']);
-  const gtmId =
-    env.VITE_GTM_ID ||
-    env.NEXT_PUBLIC_GTM_ID ||
-    env.GTM_ID ||
-    process.env.VITE_GTM_ID ||
-    process.env.NEXT_PUBLIC_GTM_ID ||
-    process.env.GTM_ID ||
-    '';
+  const env = loadEnv(mode, process.cwd(), 'VITE_');
+  const gtmId = env.VITE_GTM_ID || process.env.VITE_GTM_ID || '';
 
   return {
     base: process.env.BASE_PATH || (command === 'build' ? '/connect/react-example/' : '/'),
-    envPrefix: ['VITE_', 'NEXT_PUBLIC_'],
     plugins: [
       react({
         babel: {
