@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react';
 import './index.css';
 import QratiConnect from '@qratilabs/qrati-connect';
 import { EXAMPLE_ORG_ID, GITHUB_ORG, REPO } from './config';
+import CookieConsentBanner from './components/CookieConsentBanner';
+import { showCookiePreferences } from './lib/cookieConsent';
 
 const repoUrl = `https://github.com/${GITHUB_ORG}/${REPO}`;
 const vscodeUrl = `https://vscode.dev/github/${GITHUB_ORG}/${REPO}`;
@@ -306,12 +308,27 @@ export function EventGallery() {
                 <a href="https://www.npmjs.com/package/@qratilabs/qrati-connect" target="_blank" rel="noopener noreferrer">npm</a>
                 <a href={`https://github.com/${GITHUB_ORG}`} target="_blank" rel="noopener noreferrer">GitHub</a>
                 <a href="https://qrati.com/pricing" target="_blank" rel="noopener noreferrer">Pricing</a>
+                <button
+                  type="button"
+                  className="footer-cookie-btn"
+                  data-cc="show-preferencesModal"
+                  onClick={() => {
+                    if (typeof window !== 'undefined' && window.showCookiePreferences) {
+                      window.showCookiePreferences();
+                    } else {
+                      void showCookiePreferences();
+                    }
+                  }}
+                >
+                  Cookie Preferences
+                </button>
               </nav>
               <p className="footer-note">© {year} Qrati Labs. All rights reserved.</p>
             </div>
           </footer>
         </div>
       </div>
+      <CookieConsentBanner />
     </div>
   );
 }
