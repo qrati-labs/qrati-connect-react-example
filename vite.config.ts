@@ -2,10 +2,9 @@ import { defineConfig, loadEnv } from 'vite';
 import react from '@vitejs/plugin-react';
 import { cloudflare } from '@cloudflare/vite-plugin';
 
-// https://vite.dev/config/
 export default defineConfig(({ command, mode }) => {
   const env = loadEnv(mode, process.cwd(), 'VITE_');
-  const gtmId = env.VITE_GTM_ID || process.env.VITE_GTM_ID || '';
+  const gtmId = env.VITE_GTM_ID || process.env.VITE_GTM_ID || '__GTM_ID__';
 
   return {
     base: process.env.BASE_PATH || (command === 'build' ? '/connect/react-example/' : '/'),
