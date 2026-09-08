@@ -2,7 +2,7 @@
 
 Embeds [Qrati Connect](https://qrati.com) into a React + Vite app using the
 **React component** integration, with a host-controlled
-light/dark theme and a demo login for organizations that use custom auth.
+light/dark theme with the widget rendered immediately.
 
 ## Integration method: React component
 
