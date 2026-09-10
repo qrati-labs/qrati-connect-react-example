@@ -10,6 +10,17 @@ const vscodeUrl = `https://vscode.dev/github/${GITHUB_ORG}/${REPO}`;
 const npmUrl = 'https://www.npmjs.com/package/@qratilabs/qrati-connect';
 const year = new Date().getFullYear();
 
+const featureGroups = [
+  ['integration-instructions', 'Embed cleanly', 'Web Component, React wrapper, classic script, Shadow DOM isolation, runtime styles, hash or memory routing, themes, and host URL allowlists.'],
+  ['event', 'Run the event', 'Public event landing pages, folders, nested folders, breadcrumbs, event search, global search, sorting, status, stats, and optional maps.'],
+  ['photo-library', 'Show every memory', 'Image and video galleries, grid/list/masonry layouts, single-content views, lazy loading, pagination, blurhash, captions, metadata, downloads, and PhotoSwipe.'],
+  ['cloud-upload', 'Collect uploads', 'Drag-and-drop and mobile uploads, multi-file validation, progress, retry, cancel, HEIC conversion, cropping, trimming, and post-processing.'],
+  ['celebration', 'Make it social', 'Keyword and facial search, image-provider search, emoji reactions, star ratings, similarity feedback, points, configurable engagement, contests, and leaderboards.'],
+  ['shield-lock', 'Keep people safe', 'Login, registration, logout, password reset, terms, social or anonymous access, roles, permissions, moderation, and configurable feature gates.'],
+  ['palette', 'Fit the brand', 'Logos, cover images, fonts, palettes, borders, shadows, tokens, hidden Qrati branding, responsive layouts, translations, and accessible states.'],
+  ['monitor-heart', 'Operate with confidence', 'Admin dashboards, review, deep search, article/access tools, shot inspection, analytics, error reporting, and reliable loading, empty, error, and toast states.'],
+] as const;
+
 function initTheme(): 'light' | 'dark' {
   if (typeof window === 'undefined') return 'light';
   const t =
@@ -81,7 +92,7 @@ function App() {
               </a>
               <a href={npmUrl} target="_blank" rel="noopener noreferrer">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true">
-                  <path fill="currentColor" d="M1.5 0h21v24h-10.5v-19.5h-5.25v19.5h-5.25z"/>
+                  <path fill="currentColor" d="M1.5 0h21v24h-10.5v-19.5h-5.25v19.5h-5.25z" />
                 </svg>
                 <span>npm package</span>
               </a>
@@ -92,6 +103,46 @@ function App() {
             <section className="widget-frame" aria-label="Interactive React Event Gallery">
               <h2 className="sr-only">Live Event Photo Gallery Component</h2>
               <QratiConnect organizationId={EXAMPLE_ORG_ID} theme={theme} router="hash" />
+            </section>
+
+            <section className="answer-section" aria-labelledby="answer-heading">
+              <div className="answer-copy">
+                <span className="seo-kicker">The short answer</span>
+                <h3 id="answer-heading">What does Qrati Connect add to a React site?</h3>
+                <p>
+                  Qrati Connect adds a complete, hosted event-media experience to a React page:
+                  guests can discover galleries, upload photos and videos, search, react, rate,
+                  and participate in contests while your team controls access, branding, and moderation.
+                </p>
+              </div>
+              <div className="answer-points" aria-label="React integration benefits">
+                <span>✓&nbsp;&nbsp;One component to embed</span>
+                <span>✓&nbsp;&nbsp;No gallery backend to maintain</span>
+                <span>✓&nbsp;&nbsp;Host-controlled theme and routing</span>
+                <span>✓&nbsp;&nbsp;Feature gates stay organization-controlled</span>
+              </div>
+            </section>
+
+            <section className="seo-section feature-map-section" aria-labelledby="feature-map-heading">
+              <div className="seo-section-header">
+                <span className="seo-kicker">Complete capability map</span>
+                <h2 id="feature-map-heading">One embed. The full event experience.</h2>
+                <p>
+                  This React example exposes the same capability surface as the product. Turn on only
+                  what your organization needs; the page stays simple for guests.
+                </p>
+              </div>
+              <div className="feature-map-grid">
+                {featureGroups.map(([icon, title, description]) => (
+                  <article className="feature-map-card" key={title}>
+                    <div className="feature-map-heading">
+                      <span className="feature-map-icon iconify" data-icon={`material-symbols:${icon}`} aria-hidden="true" />
+                      <h3>{title}</h3>
+                    </div>
+                    <p>{description}</p>
+                  </article>
+                ))}
+              </div>
             </section>
 
             {/* SEO Features Section */}
@@ -107,7 +158,7 @@ function App() {
 
               <div className="seo-features-grid">
                 <article className="seo-feature-card">
-                  <div className="seo-feature-icon" aria-hidden="true">🖼️</div>
+                  <span className="seo-feature-icon iconify" data-icon="material-symbols:gallery-thumbnail" aria-hidden="true" />
                   <h3>Live Event Photo Wall</h3>
                   <p>
                     Responsive masonry grid layout, blurhash loading placeholders, and full-screen
@@ -116,7 +167,7 @@ function App() {
                 </article>
 
                 <article className="seo-feature-card">
-                  <div className="seo-feature-icon" aria-hidden="true">📸</div>
+                  <span className="seo-feature-icon iconify" data-icon="material-symbols:photo-camera" aria-hidden="true" />
                   <h3>Guest Media Uploads</h3>
                   <p>
                     Frictionless guest uploads via QR code or direct upload with client-side image
@@ -125,7 +176,7 @@ function App() {
                 </article>
 
                 <article className="seo-feature-card">
-                  <div className="seo-feature-icon" aria-hidden="true">⭐</div>
+                  <span className="seo-feature-icon iconify" data-icon="material-symbols:star" aria-hidden="true" />
                   <h3>Reactions & Contests</h3>
                   <p>
                     Boost attendee engagement with interactive emoji reactions, community star ratings,
@@ -134,7 +185,7 @@ function App() {
                 </article>
 
                 <article className="seo-feature-card">
-                  <div className="seo-feature-icon" aria-hidden="true">⚡</div>
+                  <span className="seo-feature-icon iconify" data-icon="material-symbols:bolt" aria-hidden="true" />
                   <h3>Drop-in React SDK</h3>
                   <p>
                     Native React component with typed props, host theme synchronization (light and dark),
@@ -152,6 +203,11 @@ function App() {
                 <p>
                   Install the package, import the component, and pass your organization ID.
                 </p>
+                <p className="org-requirement">
+                  <span className="iconify" data-icon="material-symbols:business" aria-hidden="true" />
+                  You need an active Qrati subscription first. Create an organization in the Qrati dashboard;
+                  its organization ID tells this embed which event space, settings, branding, and access rules to load.
+                </p>
               </div>
 
               <div className="seo-quickstart-card">
@@ -165,7 +221,7 @@ function App() {
                 </div>
                 <pre>
                   <code>
-{`// 1. Install via npm or pnpm
+                    {`// 1. Install via npm or pnpm
 // npm install @qratilabs/qrati-connect
 
 // 2. Import component in your React application
@@ -245,8 +301,8 @@ export function EventGallery() {
                 <div className="seo-cta-content">
                   <span className="seo-kicker">Host on Qrati &middot; Embed Anywhere</span>
                   <h2 id="cta-heading">
-                    Host Your Event on Qrati.{' '}
-                    <span className="cta-highlight">Stream the Live Gallery on Your Website.</span>
+                    Host Your Event on Qrati.<br />
+                    <span className="cta-highlight">Integrate the Gallery on Your Website.</span>
                   </h2>
                   <p className="seo-cta-copy">
                     Planning a conference, festival, wedding, summit, or private celebration?
@@ -288,7 +344,7 @@ export function EventGallery() {
                     >
                       <span>Contact Us</span>
                       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true">
-                        <path fill="currentColor" d="M14 5l7 7m0 0l-7 7m7-7H3" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                        <path fill="currentColor" d="M14 5l7 7m0 0l-7 7m7-7H3" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                       </svg>
                     </a>
                   </div>
