@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@qratilabs/qrati-connect':
-        specifier: 2.27.0
-        version: 2.27.0(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
+        specifier: 2.32.1
+        version: 2.32.1(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
       react:
         specifier: 19.2.4
         version: 19.2.4
@@ -664,8 +664,8 @@ packages:
   '@poppinss/exception@1.2.3':
     resolution: {integrity: sha512-dCED+QRChTVatE9ibtoaxc+WkdzOSjYTKi/+uacHWIsfodVfpsueo3+DKpgU5Px8qXjgmXkSvhXvSCz3fnP9lw==}
 
-  '@qratilabs/qrati-connect@2.27.0':
-    resolution: {integrity: sha512-pneGUX0cL4X+aFg24Tl4PLm9bMdC/roQnTk3FQExv6VmjihDzeOKe+h7g39d0T9w6Mg6qTQXr0czFYrJ8Ccvig==}
+  '@qratilabs/qrati-connect@2.32.1':
+    resolution: {integrity: sha512-2XHMMowTeFG2JYoIFkz+ddew3dTmmsmjqv34oPNFxZwBSXCYIIMhODwWDWhrBfQr6newynh288pSqY6+IyMQrA==}
     engines: {node: '>=24.0.0'}
     peerDependencies:
       react: '>=18.0.0'
@@ -2043,7 +2043,7 @@ snapshots:
 
   '@poppinss/exception@1.2.3': {}
 
-  '@qratilabs/qrati-connect@2.27.0(react-dom@19.2.4(react@19.2.4))(react@19.2.4)':
+  '@qratilabs/qrati-connect@2.32.1(react-dom@19.2.4(react@19.2.4))(react@19.2.4)':
     optionalDependencies:
       react: 19.2.4
       react-dom: 19.2.4(react@19.2.4)
